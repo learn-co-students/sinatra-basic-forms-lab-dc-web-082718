@@ -10,12 +10,19 @@ class App < Sinatra::Base
     erb :create_puppy
   end
 
-  post '/new' do
+  post '/' do
     name = params[:name]
     breed = params[:breed]
     age = params[:age]
 
-    puppy = Puppy.new(name: name, breed: breed, age: age)
+    @puppy = Puppy.new(name, breed, age)
+    #redirect "new/#{puppy.name}"
+    erb :display_puppy
   end
+
+  # get '/new/:name' do
+  #   new_puppy = Puppy.all.find do |puppy|
+  #     puppy.name == name
+  #   end
 
 end
